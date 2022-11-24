@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width" />
+        <title>KiCad PCB Outline Creator</title>
+        <script src="js/main.js" defer></script>
+        <link rel="stylesheet" href="/css/main.css" type="text/css" media="screen">
+    </head>
+    <body>
+
+        <div class="container">
+            <label>Width</label>
+            <label>Height</label>
+            <label>Corner Radius</label>
+            <input type="number" name="rect_width" id="rect_width" value="50">
+            <input type="number" name="rect_height" id="rect_height" value="50">
+            <input type="number" name="fillet" id="fillet" value="5">
+            <input type="submit" id='submit_btn' class="submit_btn" value="Generate"/>
+            <textarea name="output" id="output" readonly></textarea>
+        </div>
+
+    </body>
+</html>

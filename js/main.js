@@ -13,6 +13,7 @@ function getArc(startx, starty, midx, midy, endx, endy, layer = "Edge.Cuts") {
 const WIDTH_ID = 'rect_width'
 const HEIGHT_ID = 'rect_height'
 const FILLET_ID = 'fillet'
+const LAYER_SELECT_ID = 'layer_select'
 const SUBMIT_ID = 'submit_btn'
 
 btn = document.getElementById(SUBMIT_ID)
@@ -20,6 +21,7 @@ btn.addEventListener("click", () => {
     width = document.getElementById(WIDTH_ID).value
     height = document.getElementById(HEIGHT_ID).value
     fillet = document.getElementById(FILLET_ID).value
+    layer = document.getElementById(LAYER_SELECT_ID).value
     arc_delta = Math.sin(Math.PI / 4) * fillet
 
     ID = 0
@@ -27,15 +29,15 @@ btn.addEventListener("click", () => {
     output_text = "(kicad_pcb (version 20211014) (generator pcbnew)"
     output_text += '(net 0 "")'
 
-    output_text += getLine(fillet, 0, width - fillet, 0)
-    output_text += getLine(0, fillet, 0, height - fillet)
-    output_text += getLine(fillet, height, width - fillet, height)
-    output_text += getLine(width, fillet, width, height - fillet)
+    output_text += getLine(fillet, 0, width - fillet, 0, layer)
+    output_text += getLine(0, fillet, 0, height - fillet, layer)
+    output_text += getLine(fillet, height, width - fillet, height, layer)
+    output_text += getLine(width, fillet, width, height - fillet, layer)
 
-    output_text += getArc(0, fillet, fillet - arc_delta, fillet - arc_delta, fillet, 0)
-    output_text += getArc(0, height - fillet, fillet - arc_delta, height - fillet - arc_delta, fillet, height)
-    output_text += getArc(width - fillet, 0, width - fillet + arc_delta, fillet - arc_delta, width, fillet)
-    output_text += getArc(width - fillet, height, width - fillet + arc_delta, height - fillet - arc_delta, width, height - fillet)
+    output_text += getArc(0, fillet, fillet - arc_delta, fillet - arc_delta, fillet, 0, layer)
+    output_text += getArc(0, height - fillet, fillet - arc_delta, height - fillet - arc_delta, fillet, height, layer)
+    output_text += getArc(width - fillet, 0, width - fillet + arc_delta, fillet - arc_delta, width, fillet, layer)
+    output_text += getArc(width - fillet, height, width - fillet + arc_delta, height - fillet - arc_delta, width, height - fillet, layer)
 
     output_text += ')'
 

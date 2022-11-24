@@ -40,6 +40,14 @@ btn.addEventListener("click", () => {
     output_text += ')'
 
     document.getElementById('output').value = output_text
-    navigator.clipboard.writeText(output_text);
+    if (window.isSecureContext && navigator.clipboard)
+        navigator.clipboard.writeText(output_text);
 
+    setTimeout(function() {
+        if (window.isSecureContext && navigator.clipboard) {
+            alert("Outline has been copied to clipboard. Just hit Control-V in KiCad to paste.")
+        } else {
+            alert("Outline has been generated. Copy it from below and paste into kicad.")
+        }
+    }, 50);
 })
